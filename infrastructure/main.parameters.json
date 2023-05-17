@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "acaEnvironmentName": {
+      "value": "aca-env-d"
+    },
+    "location": {
+      "value": "westeurope"
+    },
+    "resourceGroupName": {
+      "value": "rg-workshop-cmd"
+    },
+    "acrName": {
+      "value": "acrcmdabd"
+    },
+    "imageName": {
+      "value": "test/hello"
+    },
+    "imageVersion": {
+      "value": "0.1"
+    },
+    "vnetName": {
+      "value": "vnet-cmd-d"
+    }
+  }
+}
