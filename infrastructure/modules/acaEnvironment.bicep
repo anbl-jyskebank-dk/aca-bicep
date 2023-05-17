@@ -49,8 +49,8 @@ resource environment 'Microsoft.App/managedEnvironments@2022-10-01' = {
     vnetConfiguration: {
       internal: true
       infrastructureSubnetId: resourceId('Microsoft.Network/VirtualNetworks/subnets', '${vnetName}', 'infrastructure')
-      platformReservedCidr: '10.0.0.0/17'
-      platformReservedDnsIP: '10.0.0.2'
+      platformReservedCidr: '10.1.0.0/17'
+      platformReservedDnsIP: '10.1.0.2'
       dockerBridgeCidr: '10.2.0.1/16'
     }
   }
