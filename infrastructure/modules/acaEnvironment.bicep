@@ -49,15 +49,14 @@ resource environment 'Microsoft.App/managedEnvironments@2022-10-01' = {
     vnetConfiguration: {
       internal: true
       infrastructureSubnetId: resourceId('Microsoft.Network/VirtualNetworks/subnets', '${vnetName}', 'infrastructure')
-      platformReservedCidr: '10.1.0.0/17'
+      platformReservedCidr: '10.1.0.0/16'
       platformReservedDnsIP: '10.1.0.2'
       dockerBridgeCidr: '10.2.0.1/16'
     }
   }
 }
 
-
-resource defaultApp 'Microsoft.App/containerApps@2022-10-01' = {
+resource defaultApp 'Microsoft.App/containerApps@2022-11-01-preview' = {
   name: 'hello-world'
   location: location
   identity: {
@@ -82,13 +81,17 @@ resource defaultApp 'Microsoft.App/containerApps@2022-10-01' = {
               type: 'Liveness'
               httpGet: {
                 port: 80
-                path: '/liveness'
+                path: 'your url'
               }
               periodSeconds: 240
             }
           ]*/
           image: '${acrName}.azurecr.io/${imageName}:${imageVersion}'
           name: 'hello-world'
+          resources: {
+            cpu: '0.5'
+            memory: '1Gi'
+          }
         }
       ]
       scale: {
