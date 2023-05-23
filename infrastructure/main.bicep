@@ -11,6 +11,8 @@ param vnetName string
 //param redisSkuCapacity int
 //param redisSkuFamily string
 //param redisSkuName string
+//param vnetID string
+//param subnetId string
 
 module identity 'modules/identity.bicep' = {
   name: 'defaultAppIdentity'
@@ -23,15 +25,15 @@ module identity 'modules/identity.bicep' = {
 
 /*module redis 'modules/redis.bicep' = {
   name: 'redis'
-  scope: resourceGroup(rg.name)
+  scope: resourceGroup(resourceGroupName)
   params: {
     acaEnvironmentName: acaEnvironmentName
     location: location
     skuCapacity: redisSkuCapacity
     skuFamily: redisSkuFamily
     skuName: redisSkuName
-    vnetID: network.outputs.networkId
-    subnetId: network.outputs.linkServiceSubnetId
+    vnetID: vnetID
+    subnetId: subnetId
   }
 }*/
 
@@ -63,7 +65,7 @@ module acaEnvironment 'modules/acaEnvironment.bicep' = {
 
 /*module dapr 'modules/daprComponents.bicep' = {
   name: 'dapr'
-  scope: resourceGroup(rg.name)
+  scope: resourceGroup(resourceGroupName)
   params: {
     acaEnvironmentName: acaEnvironmentName
     pubsubContainerAppNames: pubsubContainerAppNames
@@ -72,5 +74,6 @@ module acaEnvironment 'modules/acaEnvironment.bicep' = {
   }
   dependsOn: [
     redis
+    acaEnvironment
   ]
 }*/
